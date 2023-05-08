@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import PhoneVerificationPopup from './components/Otp.js' 
 
 function App() {
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setPopupVisible(true);
+  };
+
+  const handlePopupClose = () => {
+    setPopupVisible(false);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>To verify the phone number click on the button</h1>
+      <div className='mid'>
+      <button className=" btn btn-primary"  onClick={handleButtonClick}>Verify Phone</button>
+      </div>
+      <div className='container'>
+      {popupVisible && <PhoneVerificationPopup onClose={handlePopupClose} />}
+      </div>
     </div>
   );
 }
